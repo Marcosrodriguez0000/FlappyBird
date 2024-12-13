@@ -1,14 +1,16 @@
 package io.github.some_example_FlappyBird;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Main extends ApplicationAdapter {
+public class MainGameScreen implements Screen {
+    private final Main game;
+    private final String playerName;
     private SpriteBatch batch;
     private Texture background;
     private Texture bird;
@@ -35,7 +37,12 @@ public class Main extends ApplicationAdapter {
     private float timeElapsed = 0;
     private float newFishRotation = 0;
 
-    @Override
+    public MainGameScreen(Main game, String playerName) {
+        this.game = game;
+        this.playerName = playerName;
+        create();
+    }
+
     public void create() {
         batch = new SpriteBatch();
         background = new Texture("background.png");
@@ -67,7 +74,12 @@ public class Main extends ApplicationAdapter {
     }
 
     @Override
-    public void render() {
+    public void show() {
+        // Implement show logic if needed
+    }
+
+    @Override
+    public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
@@ -143,6 +155,22 @@ public class Main extends ApplicationAdapter {
                 gameActive = false;
             }
         }
+    }
+
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
     }
 
     @Override
